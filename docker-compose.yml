@@ -1,0 +1,30 @@
+networks:
+    bridge:
+
+services:
+    mongodb:
+        image: mongo:7.0.14
+        ports:
+            - "27017:27017"
+        networks:
+            - bridge
+        volumes:
+            - mongo-data:/data/db
+        environment:
+            - MONGO_INITDB_ROOT_USERNAME=admin
+            - MONGO_INITDB_ROOT_PASSWORD=secret
+
+    mongo-example:
+        image: golang-mongo-example
+        restart: on-failure
+        build:
+            context: .
+            dockerfile: Dockerfile
+        environment:
+            - MONGODB_URI=mongodb://admin:secret@mongodb:27017/tweet_centre?authSource=admin
+            - MONGODB_SERVER=mongodb:27017
+        networks:
+            - bridge
+
+volumes:
+    mongo-data:
