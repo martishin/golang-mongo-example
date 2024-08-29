@@ -1,4 +1,4 @@
-# Go Mongo Example
+# Go MongoDB Example
 ## Description
 This project is a simple example of using Go with MongoDB to manage and analyze tweet data.  
 It demonstrates how to connect to a MongoDB instance, create a collection, insert sample tweet data, and perform basic queries to calculate average tweet length for individual users and across all users.
